@@ -7,7 +7,6 @@ import SelectBox from './SelectBox';
 const options = {
     title: {
         text: 'Risk Rating',
-
     },
     yAxis: {
         title: {
@@ -57,11 +56,6 @@ export default function RiskHighChart({ climateData, buisnessOptionValues, asset
         setLngSelectBox(Array.from(new Set([...lngOptionsValues])).map((val) => {
             return { key: val, name: val }
         }));
-
-
-
-
-
     }, [climateData]);
 
 

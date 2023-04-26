@@ -118,7 +118,6 @@ export default function RiskMap({ climateData, selectedRiskYear }: Props) {
           </MarkerF>
         })}
       </GoogleMap>
-
     </div>
   )
 }
