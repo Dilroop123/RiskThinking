@@ -44,19 +44,23 @@ export default function RiskHighChart({ climateData, buisnessOptionValues, asset
 
         /* PREPARE DYNAMIC SELECT BOX VALUES*/
 
-        setAssetSelectBox([...new Set(assetOptionValues)].map((val) => {
+        setAssetSelectBox(Array.from(new Set([...assetOptionValues])).map((val) => {
             return { key: val, name: val }
         }));
 
-        setBuisnessSelectBox([...new Set(buisnessOptionValues)].map((val) => {
+        setBuisnessSelectBox(Array.from(new Set([...buisnessOptionValues])).map((val) => {
             return { key: val, name: val }
         }));
-        setLatSelectBox([...new Set(latOptionsValues)].map((val) => {
+        setLatSelectBox(Array.from(new Set([...latOptionsValues])).map((val) => {
             return { key: val, name: val }
         }));
-        setLngSelectBox([...new Set(lngOptionsValues)].map((val) => {
+        setLngSelectBox(Array.from(new Set([...lngOptionsValues])).map((val) => {
             return { key: val, name: val }
         }));
+
+
+
+
 
     }, [climateData]);
 
@@ -78,7 +82,7 @@ export default function RiskHighChart({ climateData, buisnessOptionValues, asset
                 Year: riskData.Year,
                 key: index,
             }
-        }).reduce((acc, obj) => {
+        }).reduce((acc: any, obj: any) => {
             const key = obj['Year'];
             const curGroup = acc[key] ?? [];
 
@@ -87,7 +91,7 @@ export default function RiskHighChart({ climateData, buisnessOptionValues, asset
         const groupedData = Object.keys(groupByCategory)
             .map((key, index) => {
                 return groupByCategory[key]?.
-                    reduce((prev, curr) => prev + curr.RiskRating, 0);
+                    reduce((prev: any, curr: any) => prev + curr.RiskRating, 0);
             });
         setRiskTimeData(groupedData)
     }
