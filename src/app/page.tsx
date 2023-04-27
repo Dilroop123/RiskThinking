@@ -25,6 +25,7 @@ export default function Home() {
       .then(response => response.text())
       .then(responseText => {
         // -- parse csv
+        console.log(typeof (responseText));
         Papa.parse(
           responseText,
           {
@@ -32,6 +33,7 @@ export default function Home() {
             complete: (result) => {
               var data: any[] = result.data;
               setClimateData(data);
+
               setSelectedRiskYear(riskYears[0].key);
               data.map((riskData: any, index: any) => {
                 buisnessOptionValues.push(riskData.BusinessCategory);

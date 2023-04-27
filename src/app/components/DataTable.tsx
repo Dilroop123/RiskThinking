@@ -8,13 +8,6 @@ interface Props {
 }
 export default function DataTable({ climateData, selectedRiskYear }: Props) {
     const [riskTableData, setRiskTableData]: any = useState();
-
-    const [rowData] = useState([
-        { make: "Toyota", model: "Celica", price: 35000 },
-        { make: "Ford", model: "Mondeo", price: 32000 },
-        { make: "Porsche", model: "Boxster", price: 72000 }
-    ]);
-
     const [columnDefs] = useState([
         { field: 'AssetName', sortable: true, filter: 'agTextColumnFilter', },
         { field: 'Lat', sortable: true, filter: 'agTextColumnFilter', },
@@ -43,7 +36,6 @@ export default function DataTable({ climateData, selectedRiskYear }: Props) {
 
         setRiskTableData(markers);
     }, [selectedRiskYear]);
-
 
     return (
         <AgGridReact
