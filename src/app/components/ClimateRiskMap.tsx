@@ -7,7 +7,7 @@ interface Props {
   climateData: any;
   selectedRiskYear: any
 }
-export default function RiskMap({ climateData, selectedRiskYear }: Props) {
+export default function ClimateRiskMap({ climateData, selectedRiskYear }: Props) {
 
   const [isShowInfoWindow, setIsShowInfoWindow]: any = useState(false);
   const [infoWindowMarker, setInfoWindowMarker]: any = useState();
@@ -82,8 +82,6 @@ export default function RiskMap({ climateData, selectedRiskYear }: Props) {
     return <p>Loading...</p>;
   }
 
-  // console.log(riskMarkers);
-
   return (
     <div>
 
@@ -120,4 +118,4 @@ export default function RiskMap({ climateData, selectedRiskYear }: Props) {
       </GoogleMap>
     </div>
   )
-}
+};

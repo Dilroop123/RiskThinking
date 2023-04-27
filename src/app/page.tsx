@@ -2,15 +2,21 @@
 import React, { useState, useEffect } from 'react'
 import * as Papa from 'papaparse';
 import { riskYears } from './constants/constants';
-import RiskMap from './components/RiskMap';
 import DataTable from './components/DataTable';
-import RiskHighChart from './components/RiskHighChart';
-import SelectBox from './components/SelectBox';
+import ClimateRiskHighChart from './components/ClimateRiskHighChart';
+import ClimateRiskMap from './components/ClimateRiskMap';
+import Header from './components/Header';
+
+import './../../src/app/globals.css'
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+
 
 let buisnessOptionValues: any = [];
 let assetOptionValues: any = [];
 let latOptionsValues: any = [];
 let lngOptionsValues: any = [];
+
 export default function Home() {
   const [climateData, setClimateData]: any = useState([]);
   const [selectedRiskYear, setSelectedRiskYear]: any = useState();
@@ -26,7 +32,6 @@ export default function Home() {
             complete: (result) => {
               var data: any[] = result.data;
               setClimateData(data);
-              console.log(data[0]);
               setSelectedRiskYear(riskYears[0].key);
               data.map((riskData: any, index: any) => {
                 buisnessOptionValues.push(riskData.BusinessCategory);
@@ -38,32 +43,28 @@ export default function Home() {
           });
       });
   }, []);
+
   return (
-    <div>
+    <div className='container'>
+      <Header
+        items={riskYears}
+        setSelectedValue={setSelectedRiskYear}
+        selectedValue={selectedRiskYear} />
 
-      <div style={{ display: 'flex', alignItems: 'center', flex: 1, paddingLeft: '10px' }}>
-        <h2 style={{ color: '#0bc9de' }}> RiskThinking UI/UX Developers</h2>
-        <div style={{ marginLeft: '60px', display: 'flex', alignItems: 'center' }}>
-          <SelectBox
-            items={riskYears}
-            setSelectedValue={setSelectedRiskYear}
-            selectedValue={selectedRiskYear} />
-          <h3 style={{ marginLeft: '5px' }}>Year</h3>
-        </div>
-
-      </div>
       <div style={{ display: 'flex' }}>
-        <div style={{ flex: 1 }}>
-          <RiskMap
+        <div className='card'>
+          <ClimateRiskMap
             climateData={climateData}
             selectedRiskYear={selectedRiskYear} />
         </div>
-
-        <DataTable
-          climateData={climateData}
-          selectedRiskYear={selectedRiskYear} />
+        <div className="ag-theme-alpine card">
+          <DataTable
+            climateData={climateData}
+            selectedRiskYear={selectedRiskYear} />
+        </div>
       </div>
-      <RiskHighChart
+
+      <ClimateRiskHighChart
         climateData={climateData}
         buisnessOptionValues={buisnessOptionValues}
         assetOptionValues={assetOptionValues}
@@ -72,4 +73,4 @@ export default function Home() {
       />
     </div>
   )
-}
+};

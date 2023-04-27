@@ -4,9 +4,14 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import SelectBox from './SelectBox';
 
+import '../../app/globals.css'
+
 const options = {
     title: {
-        text: 'Risk Rating',
+        text: 'Climate Risk Rating',
+        style: {
+            color: '#0bc9de'
+        }
     },
     yAxis: {
         title: {
@@ -29,7 +34,7 @@ interface Props {
     lngOptionsValues: any;
 }
 
-export default function RiskHighChart({ climateData, buisnessOptionValues, assetOptionValues, latOptionsValues, lngOptionsValues }: Props) {
+export default function ClimateRiskHighChart({ climateData, buisnessOptionValues, assetOptionValues, latOptionsValues, lngOptionsValues }: Props) {
 
     const [riskTimeData, setRiskTimeData]: any = useState();
     const [selectedValue, setSelectedValue]: any = useState();
@@ -83,7 +88,7 @@ export default function RiskHighChart({ climateData, buisnessOptionValues, asset
             return { ...acc, [key]: [...curGroup, obj] };
         }, {});
         const groupedData = Object.keys(groupByCategory)
-            .map((key, index) => {
+            .map((key) => {
                 return groupByCategory[key]?.
                     reduce((prev: any, curr: any) => prev + curr.RiskRating, 0);
             });
@@ -91,7 +96,7 @@ export default function RiskHighChart({ climateData, buisnessOptionValues, asset
     }
 
     return (
-        <div style={{ marginTop: '10px', padding: '10px' }}>
+        <div className='card'>
             <div style={{ display: 'flex' }}>
                 {assetSelectBox?.length > 0 &&
                     <div style={{ flex: 1 }} >

@@ -9,7 +9,6 @@ interface Props {
 }
 
 export default function SelectBox({ selectedValue, setSelectedValue, items }: Props) {
-    //  console.log(items)
     return (
         <Dropdown>
             <Dropdown.Button flat> {selectedValue}</Dropdown.Button>
@@ -29,4 +28,4 @@ export default function SelectBox({ selectedValue, setSelectedValue, items }: Pr
             </Dropdown.Menu>
         </Dropdown>
     )
-} 
+};
